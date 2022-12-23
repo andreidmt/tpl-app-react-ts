@@ -1,0 +1,100 @@
+{
+  "name": "tpl-app-react-ts",
+  "version": "0.0.1",
+  "description": "React + Typescript SPA template",
+  "license": "MIT",
+  "homepage": "https://github.com/andreidmt/tpl-app-react-ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreidmt/tpl-app-react-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andreidmt/tpl-app-react-ts/issues"
+  },
+  "author": {
+    "name": "Andrei Dumitrescu",
+    "url": "https://github.com/andreidmt"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "template"
+  ],
+  "scripts": {
+    "----UTIL": "",
+    "prepare": "git config --local core.hooksPath .githook",
+    "setup": "npm ci --also=dev",
+    "update": "npm-check --update",
+    "postupdate": "npm audit fix",
+    "----BUNDLE": "",
+    "build.js": "babel src --out-dir dist --extensions '.ts,.tsx'",
+    "build.types": "tsc --declaration --emitDeclarationOnly",
+    "build": "npm run build:transpile && npm run build:types",
+    "----TEST": "",
+    "pretest": "npm run build",
+    "test": "jest",
+    "tdd": "nodemon --watch src --exec 'npm test'",
+    "coverage": "nyc npm run test && nyc report --reporter=text-lcov | coveralls",
+    "----LINT": "",
+    "lint.js": "eslint --quiet src",
+    "lint.md": "markdownlint '*.md'",
+    "lint": "npm run lint.js && npm run lint.md",
+    "typecheck": "tsc --pretty --noEmit",
+    "----PUBLISH": "",
+    "publish": "semantic-release"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --quiet"
+    ],
+    ".md": [
+      "markdownlint"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+
+    "@testing-library/dom": "^8.11.1",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@testing-library/user-event": "^13.5.0",
+
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+
+    "eslint": "<8.0.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-airbnb-typescript": "^16.0.0",
+    "eslint-config-prettier": "^8.1.0",
+
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-testing-library": "^5.0.0",
+
+    "eslint-plugin-json": "^3.0.0",
+    "eslint-plugin-no-inferred-method-name": "^2.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-unicorn": "^32.0.1",
+
+    "lint-staged": "^11.0.0",
+    "markdownlint-cli": "^0.27.1",
+    "npm-check": "^5.9.2",
+    "tap-nirvana": "^1.1.0",
+    "tape": "^5.2.2",
+    "prettier": "2.4.1",
+    "semantic-release": "^18.0.0",
+    "typescript": "^4.5.2"
+  }
+}
